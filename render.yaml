@@ -1,0 +1,44 @@
+services:
+  - type: web
+    name: six-characteristics-backend
+    runtime: docker
+    plan: free
+    region: oregon
+    dockerfilePath: ./backend/Dockerfile
+    envVars:
+      - key: SPRING_DATASOURCE_URL
+        value: jdbc:mysql://mysql.railway.internal:3306/six_characteristics?useUnicode=true&characterEncoding=utf8&serverTimezone=Asia/Shanghai
+      - key: SPRING_DATASOURCE_USERNAME
+        fromDatabase:
+          name: mysql
+          property: username
+      - key: SPRING_DATASOURCE_PASSWORD
+        fromDatabase:
+          name: mysql
+          property: password
+      - key: JWT_SECRET
+        value: SixCharacteristicsSecretKeyForJwtTokenGeneration2026
+      - key: JWT_EXPIRATION
+        value: "86400000"
+      - key: SERVER_PORT
+        value: "8080"
+    healthCheckPath: /api/health
+    healthCheckInterval: 300
+    healthCheckTimeout: 10
+    maxShutdownDelay: 30
+
+  - type: pserv
+    name: mysql
+    runtime: mysql
+    plan: free
+    region: oregon
+    ipAllowList: []
+    envVars:
+      - key: MYSQL_DATABASE
+        value: six_characteristics
+      - key: MYSQL_ROOT_PASSWORD
+        value: root
+      - key: MYSQL_USER
+        value: root
+      - key: MYSQL_PASSWORD
+        value: root

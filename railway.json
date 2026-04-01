@@ -1,0 +1,38 @@
+{
+  "$schema": "https://railway.app/railway.schema.json",
+  "build": {
+    "builder": "dockerfile",
+    "context": "./backend"
+  },
+  "deploy": {
+    "startCommand": "java -jar app.jar",
+    "restartPolicyMaxRetries": 5,
+    "restartPolicyWindowSeconds": 60
+  },
+  "variables": {
+    "SPRING_DATASOURCE_URL": {
+      "description": "MySQL 连接字符串",
+      "value": "jdbc:mysql://${{ MYSQL_HOST }}:${{ MYSQL_PORT }}/six_characteristics?useUnicode=true&characterEncoding=utf8&serverTimezone=Asia/Shanghai"
+    },
+    "SPRING_DATASOURCE_USERNAME": {
+      "description": "MySQL 用户名",
+      "value": "${{ MYSQL_USER }}"
+    },
+    "SPRING_DATASOURCE_PASSWORD": {
+      "description": "MySQL 密码",
+      "value": "${{ MYSQL_PASSWORD }}"
+    },
+    "JWT_SECRET": {
+      "description": "JWT 密钥",
+      "value": "SixCharacteristicsSecretKeyForJwtTokenGeneration2026"
+    },
+    "JWT_EXPIRATION": {
+      "description": "JWT 过期时间 (毫秒)",
+      "value": "86400000"
+    },
+    "SERVER_PORT": {
+      "description": "服务端口",
+      "value": "8080"
+    }
+  }
+}
