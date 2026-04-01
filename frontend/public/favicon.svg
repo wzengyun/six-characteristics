@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <polygon points="32,4 60,18 60,46 32,60 4,46 4,18" stroke="#00d4ff" stroke-width="3" fill="rgba(0,212,255,0.1)"/>
+  <polygon points="32,12 52,22 52,42 32,52 12,42 12,22" stroke="#00d4ff" stroke-width="1.5" fill="rgba(0,212,255,0.05)"/>
+  <text x="32" y="37" text-anchor="middle" fill="#00d4ff" font-size="14" font-family="Arial" font-weight="bold">六</text>
+</svg>
