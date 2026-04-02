@@ -3,8 +3,13 @@ import { ElMessage } from 'element-plus'
 import { useAuthStore } from '@/store/auth'
 import router from '@/router'
 
+// 生产环境使用实际后端 URL，开发环境使用代理
+const API_BASE_URL = import.meta.env.PROD 
+  ? (import.meta.env.VITE_API_URL || 'https://six-characteristics-api.onrender.com')
+  : '/api'
+
 const http = axios.create({
-  baseURL: '/api',
+  baseURL: API_BASE_URL,
   timeout: 30000
 })
 
