@@ -1,0 +1,21 @@
+# Railway 快速部署配置
+
+services:
+  - type: web
+    name: six-characteristics-api
+    env: docker
+    plan: free
+    dockerfilePath: ./backend/Dockerfile
+    envVars:
+      - key: SPRING_DATASOURCE_URL
+        value: jdbc:postgresql://dpg-d775kmvkijhs73ab1m80-a:5432/six_xing?useUnicode=true&characterEncoding=utf8&serverTimezone=Asia/Shanghai
+      - key: SPRING_DATASOURCE_USERNAME
+        value: six_xing_user
+      - key: SPRING_DATASOURCE_PASSWORD
+        value: niDzP4jahuloGhwMy5XNG7ULNpSiRW7w
+      - key: JWT_SECRET
+        value: SixCharacteristicsSecretKeyForJwtTokenGeneration2026
+      - key: JWT_EXPIRATION
+        value: "86400000"
+      - key: SERVER_PORT
+        value: "8080"
